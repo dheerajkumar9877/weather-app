@@ -10,12 +10,19 @@
     <div class="weather-box">
         <h1>Weather App</h1>
 
-        <input type="text" id="city" placeholder="Enter City Name">
-        <button onclick="getWeather()">Search</button>
+        <div class="call-btn">
+            <button id="btn" onclick="toggleSearch()">🔍</button>
+        </div>
+        <div class="search">
+            <form class="search-box" onsubmit="getWeather(event)">
+                <input type="text" id="city" placeholder="Enter City Name" required>
+                <button type="submit">🔍</button>
+            </form>
+        </div>
 
         <div id="result"></div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="logic.js"></script>
 </body>
 </html>

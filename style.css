@@ -29,3 +29,6 @@ button {
 #result {
     margin-top: 20px;
 }
+.search{
+    display: none;
+}
