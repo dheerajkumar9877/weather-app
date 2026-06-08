@@ -6,10 +6,11 @@ function toggleSearch() {
 
     const search = document.querySelector(".search");
     search.style.display = "block";
-    // search.scrollIntoView({ behavior: "smooth" });
 }
 
-async function getWeather() {
+async function getWeather(event) {
+    event.preventDefault(); // stops page refresh
+
     const city = document.getElementById("city").value;
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -17,6 +18,11 @@ async function getWeather() {
     try {
         const response = await fetch(url);
         const data = await response.json();
+
+        if (data.cod !== 200) {
+            document.getElementById("result").innerHTML = "City not found!";
+            return;
+        }
 
         document.getElementById("result").innerHTML = `
             <h2>${data.name}</h2>
@@ -26,6 +32,6 @@ async function getWeather() {
         `;
     } catch (error) {
         document.getElementById("result").innerHTML =
-            "City not found!";
+            "Something went wrong!";
     }
 }
